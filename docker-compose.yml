@@ -1,0 +1,11 @@
+services:
+  save-sync:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      # Config and backups persist on the host
+      - /home/robertt/.config/save-sync-go:/root/.config/save-sync-go
+      # RetroArch saves mounted at the same absolute path so stored paths work
+      - /home/robertt/.config/retroarch/saves:/home/robertt/.config/retroarch/saves
+    restart: unless-stopped
