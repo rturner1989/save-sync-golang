@@ -27,7 +27,7 @@ func initTest(t *testing.T) (*http.ServeMux, string) {
 	backupDir = filepath.Join(tmp, "backups")
 
 	var err error
-	tmpl, err = template.ParseFS(templateFS, "templates/*.html")
+	tmpl, err = template.ParseFS(staticFS, "templates/*.html")
 	if err != nil {
 		t.Fatalf("parse templates: %v", err)
 	}

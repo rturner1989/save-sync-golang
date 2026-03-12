@@ -15,8 +15,8 @@ import (
 	"time"
 )
 
-//go:embed templates/*
-var templateFS embed.FS
+//go:embed templates/* static/*
+var staticFS embed.FS
 
 // ── Data types ────────────────────────────────────────────────────────────────
 
@@ -226,6 +226,7 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 
 func newMux() *http.ServeMux {
 	mux := http.NewServeMux()
+	mux.Handle("/static/", http.FileServer(http.FS(staticFS)))
 	mux.HandleFunc("GET /{$}", handleIndex)
 	mux.HandleFunc("GET /settings", handleSettings)
 	mux.HandleFunc("POST /settings/add", handleAddGame)
@@ -249,7 +250,7 @@ func localIP() string {
 
 func main() {
 	var err error
-	tmpl, err = template.ParseFS(templateFS, "templates/*.html")
+	tmpl, err = template.ParseFS(staticFS, "templates/*.html")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to load templates: %v\n", err)
 		os.Exit(1)
