@@ -42,11 +42,11 @@ var (
 func loadConfig() Config {
 	data, err := os.ReadFile(configPath)
 	if err != nil {
-		return Config{Games: []Game{}, Port: 8081}
+		return Config{Games: []Game{}, Port: 8080}
 	}
 	var cfg Config
 	if err := json.Unmarshal(data, &cfg); err != nil {
-		return Config{Games: []Game{}, Port: 8081}
+		return Config{Games: []Game{}, Port: 8080}
 	}
 	if cfg.Port == 0 {
 		cfg.Port = 8080

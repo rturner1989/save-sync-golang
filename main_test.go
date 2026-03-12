@@ -47,7 +47,7 @@ func makeSRMFile(t *testing.T, dir string) string {
 // seedConfig writes a config.json with the given games.
 func seedConfig(t *testing.T, games []Game) {
 	t.Helper()
-	cfg := Config{Games: games, Port: 8081}
+	cfg := Config{Games: games, Port: 8080}
 	data, _ := json.Marshal(cfg)
 	if err := os.MkdirAll(filepath.Dir(configPath), 0755); err != nil {
 		t.Fatal(err)
