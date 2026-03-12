@@ -1,0 +1,8 @@
+# Compiled binary
+save-sync-go
+
+# Test binaries
+*.test
+
+# Dependency vendor directory (if added later)
+vendor/
